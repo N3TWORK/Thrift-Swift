@@ -72,7 +72,7 @@ public class TCFSocketTransport: TStreamTransport {
     var readStream:  Unmanaged<CFReadStream>?
     var writeStream:  Unmanaged<CFWriteStream>?
     CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault,
-                                       hostname as CFString!,
+                                       hostname as CFString,
                                        UInt32(port),
                                        &readStream,
                                        &writeStream)
