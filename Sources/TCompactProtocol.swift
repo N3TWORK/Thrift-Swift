@@ -473,8 +473,7 @@ public class TCompactProtocol: TProtocol {
     let typeToWrite = typeOverride == 0xFF ? compactType(fieldType).rawValue : typeOverride
     
     // check if we can use delta encoding for the field id
-    let diff = UInt8(fieldID) - lastFieldId
-    if (UInt8(fieldID) > lastFieldId) && (diff <= 15) {
+    if (UInt8(fieldID) > lastFieldId) && ((UInt8(fieldID) - lastFieldId) <= 15) {
       // Write them together
       try writebyteDirect((UInt8(fieldID) - lastFieldId) << 4 | typeToWrite)
       
